@@ -1,0 +1,8 @@
+server:
+  port: 8091
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5433/operations}
+    username: "root"
+    password: "root"
