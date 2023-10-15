@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OperationRepositoryImpl implements OperationRepository {
 
-    @PersistenceContext
+    @PersistenceContext(name = "Operations-PU")
     private EntityManager entityManager;
 
     @Override
