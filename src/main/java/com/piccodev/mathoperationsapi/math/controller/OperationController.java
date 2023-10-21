@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/operations")
+@RequestMapping("/v1/operations")
 public class OperationController {
 
     private final CreateOperationService createOperationService;
 
-    @PostMapping(name = "/v1/operation", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OperationResponse> execute(@Valid @RequestBody final CreateOperationRequest createOperationRequest) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OperationResponse> execute(@Valid @RequestBody final CreateOperationRequest operation) {
 
-        final Operation createdOperation = createOperationService.execute(createOperationRequest);
+        final Operation createdOperation = createOperationService.execute(operation);
 
-        final var response = OperationResponse.from(createdOperation);
+        var response = OperationResponse.from(createdOperation);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
